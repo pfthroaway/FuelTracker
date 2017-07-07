@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Extensions;
+using Extensions.Enums;
+using FuelTracker.Classes;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using FuelTracker.Classes.Entities;
 
-namespace FuelTracker
+namespace FuelTracker.Windows
 {
     /// <summary>Interaction logic for MainWindow.xaml</summary>
     public partial class MainWindow
@@ -25,7 +27,7 @@ namespace FuelTracker
                 TxtUsername.Text = "";
                 PswdPassword.Clear();
                 TxtUsername.Focus();
-                ViewAccountWindow viewAccountWindow = new ViewAccountWindow { PreviousWindow = this };
+                Account.ViewAccountWindow viewAccountWindow = new Account.ViewAccountWindow { PreviousWindow = this };
                 viewAccountWindow.RefreshItemsSource();
                 viewAccountWindow.Show();
                 Visibility = Visibility.Hidden;
@@ -34,7 +36,7 @@ namespace FuelTracker
 
         private void BtnNewUser_Click(object sender, RoutedEventArgs e)
         {
-            NewUserWindow newUserWindow = new NewUserWindow { PreviousWindow = this };
+            Account.NewUserWindow newUserWindow = new Account.NewUserWindow { PreviousWindow = this };
             newUserWindow.Show();
             Visibility = Visibility.Hidden;
         }
@@ -71,14 +73,10 @@ namespace FuelTracker
         public MainWindow()
         {
             InitializeComponent();
+            AppState.VerifyDatabaseIntegrity();
             TxtUsername.Focus();
         }
 
         #endregion Window Manipulation
-
-        private void WindowMain_Loaded(object sender, RoutedEventArgs e)
-        {
-            AppState.VerifyDatabaseIntegrity();
-        }
     }
 }

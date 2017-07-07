@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelTracker", "FuelTracker\FuelTracker.csproj", "{99939DDF-C9B1-41D2-86B5-B6A984DA0403}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{20F40385-5991-461C-9340-2F5DE0E320F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{99939DDF-C9B1-41D2-86B5-B6A984DA0403}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99939DDF-C9B1-41D2-86B5-B6A984DA0403}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99939DDF-C9B1-41D2-86B5-B6A984DA0403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F40385-5991-461C-9340-2F5DE0E320F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F40385-5991-461C-9340-2F5DE0E320F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F40385-5991-461C-9340-2F5DE0E320F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F40385-5991-461C-9340-2F5DE0E320F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

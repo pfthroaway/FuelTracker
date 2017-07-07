@@ -1,9 +1,12 @@
 ﻿using Extensions;
+using Extensions.Enums;
+using FuelTracker.Classes.Database;
+using FuelTracker.Classes.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace FuelTracker
+namespace FuelTracker.Classes
 {
     /// <summary>Represents the current state of the application.</summary>
     internal static class AppState
@@ -19,11 +22,13 @@ namespace FuelTracker
 
         #region User Management
 
-        /// <summary>Gets the next UserID autoincrement value in the database for the Vehicle table.</summary>
-        /// <returns>Next UserID value</returns>
-        public static async Task<int> GetNextUserIndex()
+        /// <summary>Changes details in the database about a User.</summary>
+        /// <param name="oldUser">Old User details</param>
+        /// <param name="newUser">New User details</param>
+        /// <returns>True if successful</returns>
+        public static async Task<bool> ChangeUserDetails(User oldUser, User newUser)
         {
-            return await DatabaseInteraction.GetNextUserIndex();
+            return await DatabaseInteraction.ChangeUserDetails(oldUser, newUser);
         }
 
         /// <summary>Removes a User and all associated Vehicles and Transactions from the database.</summary>
@@ -32,6 +37,13 @@ namespace FuelTracker
         public static async Task<bool> DeleteUser(User deleteUser)
         {
             return await DatabaseInteraction.DeleteUser(deleteUser);
+        }
+
+        /// <summary>Gets the next UserID autoincrement value in the database for the Vehicle table.</summary>
+        /// <returns>Next UserID value</returns>
+        public static async Task<int> GetNextUserIndex()
+        {
+            return await DatabaseInteraction.GetNextUserIndex();
         }
 
         /// <summary>Loads a User and all associated Vehicles and their Transactions from the database.</summary>
@@ -140,6 +152,15 @@ namespace FuelTracker
             return await DatabaseInteraction.LoadVehicles(userID);
         }
 
+        /// <summary>Changes details in the database regarding a Vehicle.</summary>
+        /// <param name="oldVehicle">Old Vehicle details</param>
+        /// <param name="newVehicle">New Vehicle details</param>
+        /// <returns>Returns true if modification successful</returns>
+        public static async Task<bool> ModifyVehicle(Vehicle oldVehicle, Vehicle newVehicle)
+        {
+            return await DatabaseInteraction.ModifyVehicle(oldVehicle, newVehicle);
+        }
+
         /// <summary>Adds a new Vehicle to the database.</summary>
         /// <param name="newVehicle">Vehicle to be added</param>
         /// <returns>Returns whether the Vehicle was successfully added</returns>
@@ -155,10 +176,9 @@ namespace FuelTracker
         /// <summary>Displays a new Notification in a thread-safe way.</summary>
         /// <param name="message">Message to be displayed</param>
         /// <param name="title">Title of the Notification Window</param>
-        /// <param name="buttons">Button type to be displayed on the Window</param>
         internal static void DisplayNotification(string message, string title)
         {
-            Application.Current.Dispatcher.Invoke(delegate
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 new Notification(message, title, NotificationButtons.OK).ShowDialog();
             });
@@ -167,20 +187,24 @@ namespace FuelTracker
         /// <summary>Displays a new Notification in a thread-safe way.</summary>
         /// <param name="message">Message to be displayed</param>
         /// <param name="title">Title of the Notification Window</param>
-        /// <param name="buttons">Button type to be displayed on the Window</param>
         /// <param name="window">Window being referenced</param>
         internal static void DisplayNotification(string message, string title, Window window)
         {
-            Application.Current.Dispatcher.Invoke(delegate
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 new Notification(message, title, NotificationButtons.OK, window).ShowDialog();
             });
         }
 
+        /// <summary>Displays a new Notification with Yes/No buttons in a thread-safe way.</summary>
+        /// <param name="message">Message to be displayed</param>
+        /// <param name="title">Title of the Notification Window</param>
+        /// <param name="window">Window being referenced</param>
+        /// <returns>True if user clicks Yes</returns>
         internal static bool YesNoNotification(string message, string title, Window window)
         {
             bool result = false;
-            Application.Current.Dispatcher.Invoke(delegate
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 if (new Notification(message, title, NotificationButtons.YesNo, window).ShowDialog() == true)
                     result = true;
