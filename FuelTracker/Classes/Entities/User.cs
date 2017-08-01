@@ -9,11 +9,11 @@ using System.Linq;
 namespace FuelTracker.Classes.Entities
 {
     /// <summary>Represents a User who owns vehicle(s).</summary>
-    public class User : IEnumerable<Vehicle>, INotifyPropertyChanged, IEquatable<User>
+    public class User : INotifyPropertyChanged, IEnumerable<Vehicle>, IEquatable<User>
     {
         private int _id;
         private string _username, _password;
-        private List<Vehicle> _vehicles;
+        private List<Vehicle> _vehicles = new List<Vehicle>();
 
         #region Modifying Properties
 
@@ -59,10 +59,8 @@ namespace FuelTracker.Classes.Entities
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
+        private void OnPropertyChanged(string property) => PropertyChanged?.Invoke(this,
+            new PropertyChangedEventArgs(property));
 
         #endregion Data-Binding
 
@@ -98,15 +96,9 @@ namespace FuelTracker.Classes.Entities
 
         #region Enumerators
 
-        public IEnumerator<Vehicle> GetEnumerator()
-        {
-            return Vehicles.GetEnumerator();
-        }
+        public IEnumerator<Vehicle> GetEnumerator() => Vehicles.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion Enumerators
 
@@ -119,35 +111,17 @@ namespace FuelTracker.Classes.Entities
             return left.ID == right.ID && string.Equals(left.Username, right.Username, StringComparison.OrdinalIgnoreCase) && string.Equals(left.Password, right.Password, StringComparison.Ordinal) && left.Vehicles.Count == right.Vehicles.Count && !left.Vehicles.Except(right.Vehicles).Any();
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(this, obj as User);
-        }
+        public override bool Equals(object obj) => Equals(this, obj as User);
 
-        public bool Equals(User otherUser)
-        {
-            return Equals(this, otherUser);
-        }
+        public bool Equals(User otherUser) => Equals(this, otherUser);
 
-        public static bool operator ==(User left, User right)
-        {
-            return Equals(left, right);
-        }
+        public static bool operator ==(User left, User right) => Equals(left, right);
 
-        public static bool operator !=(User left, User right)
-        {
-            return !Equals(left, right);
-        }
+        public static bool operator !=(User left, User right) => !Equals(left, right);
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode() ^ 17;
-        }
+        public override int GetHashCode() => base.GetHashCode() ^ 17;
 
-        public override string ToString()
-        {
-            return $"{ID} - {Username}";
-        }
+        public override string ToString() => $"{ID} - {Username}";
 
         #endregion Override Operators
 
@@ -174,13 +148,9 @@ namespace FuelTracker.Classes.Entities
         }
 
         /// <summary>Replaces this instance of User with another instance.</summary>
-        /// <param name="otherUser">Instance of User to replace this instance</param>
-        public User(User otherUser)
+        /// <param name="other">Instance of User to replace this instance</param>
+        public User(User other) : this(other.ID, other.Username, other.Password, other.Vehicles)
         {
-            ID = otherUser.ID;
-            Username = otherUser.Username;
-            Password = otherUser.Password;
-            _vehicles = new List<Vehicle>(otherUser.Vehicles);
         }
 
         #endregion Constructors

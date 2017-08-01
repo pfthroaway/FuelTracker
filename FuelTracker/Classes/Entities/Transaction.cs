@@ -167,10 +167,8 @@ namespace FuelTracker.Classes.Entities
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
+        private void OnPropertyChanged(string property) => PropertyChanged?.Invoke(this,
+            new PropertyChangedEventArgs(property));
 
         #endregion Data-Binding
 
@@ -185,35 +183,17 @@ namespace FuelTracker.Classes.Entities
                    left.TranscationID == right.TranscationID && left.VehicleID == right.VehicleID && left.Odometer == right.Odometer && left.Range == right.Range && left.Distance == right.Distance && left.Gallons == right.Gallons && left.Odometer == right.Odometer && left.Price == right.Price;
         }
 
-        public sealed override bool Equals(object obj)
-        {
-            return Equals(this, obj as Transaction);
-        }
+        public override bool Equals(object obj) => Equals(this, obj as Transaction);
 
-        public bool Equals(Transaction otherTransaction)
-        {
-            return Equals(this, otherTransaction);
-        }
+        public bool Equals(Transaction otherTransaction) => Equals(this, otherTransaction);
 
-        public static bool operator ==(Transaction left, Transaction right)
-        {
-            return Equals(left, right);
-        }
+        public static bool operator ==(Transaction left, Transaction right) => Equals(left, right);
 
-        public static bool operator !=(Transaction left, Transaction right)
-        {
-            return !Equals(left, right);
-        }
+        public static bool operator !=(Transaction left, Transaction right) => !Equals(left, right);
 
-        public sealed override int GetHashCode()
-        {
-            return base.GetHashCode() ^ 17;
-        }
+        public override int GetHashCode() => base.GetHashCode() ^ 17;
 
-        public override string ToString()
-        {
-            return $"{DateToString} - {Store}";
-        }
+        public override string ToString() => $"{DateToString} - {Store}";
 
         #endregion Override Operators
 
@@ -250,18 +230,9 @@ namespace FuelTracker.Classes.Entities
         }
 
         /// <summary>Replaces this instance of Transaction with another instance.</summary>
-        /// <param name="otherTransaction"></param>
-        public Transaction(Transaction otherTransaction)
+        /// <param name="other">Instance of Transaction to replace this instance</param>
+        public Transaction(Transaction other) : this(other.TranscationID, other.VehicleID, other.Date, other.Store, other.Octane, other.Distance, other.Gallons, other.Price, other.Odometer, other.Range)
         {
-            TranscationID = otherTransaction.TranscationID;
-            VehicleID = otherTransaction.VehicleID;
-            Store = otherTransaction.Store;
-            Date = otherTransaction.Date;
-            Octane = otherTransaction.Octane;
-            Range = otherTransaction.Range;
-            Distance = otherTransaction.Distance;
-            Gallons = otherTransaction.Gallons;
-            Price = otherTransaction.Price;
         }
 
         #endregion Constructors

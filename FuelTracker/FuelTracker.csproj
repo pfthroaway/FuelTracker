@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Windows\FuelTracker.ico</ApplicationIcon>
+    <ApplicationIcon>Pages\FuelTracker.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -80,64 +80,71 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Windows\Transactions\SearchTransactionsResultsWindow.xaml">
+    <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Transactions\SearchTransactionsWindow.xaml">
+    <Page Include="Pages\Transactions\SearchTransactionsResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Vehicles\ManageVehicleWindow.xaml">
+    <Page Include="Pages\Transactions\SearchTransactionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Transactions\AddTransactionWindow.xaml">
+    <Page Include="Pages\Vehicles\ManageVehiclePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Vehicles\AddVehicleWindow.xaml">
+    <Page Include="Pages\Transactions\AddTransactionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Account\ChangePasswordWindow.xaml">
+    <Page Include="Pages\Vehicles\AddVehiclePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Transactions\ModifyTransactionWindow.xaml">
+    <Page Include="Pages\Account\ChangePasswordPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Vehicles\ModifyVehicleWindow.xaml">
+    <Page Include="Pages\Transactions\ModifyTransactionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Account\ViewAccountWindow.xaml">
+    <Page Include="Pages\Vehicles\ModifyVehiclePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Account\NewUserWindow.xaml">
+    <Page Include="Pages\Account\ViewAccountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainWindow.xaml">
+    <Page Include="Pages\Account\NewUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Windows\Transactions\SearchTransactionsResultsWindow.xaml.cs">
-      <DependentUpon>SearchTransactionsResultsWindow.xaml</DependentUpon>
+    <Compile Include="Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Transactions\SearchTransactionsWindow.xaml.cs">
-      <DependentUpon>SearchTransactionsWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Transactions\SearchTransactionsResultsPage.xaml.cs">
+      <DependentUpon>SearchTransactionsResultsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Vehicles\ManageVehicleWindow.xaml.cs">
-      <DependentUpon>ManageVehicleWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Transactions\SearchTransactionsPage.xaml.cs">
+      <DependentUpon>SearchTransactionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Transactions\AddTransactionWindow.xaml.cs">
-      <DependentUpon>AddTransactionWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Vehicles\ManageVehiclePage.xaml.cs">
+      <DependentUpon>ManageVehiclePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Vehicles\AddVehicleWindow.xaml.cs">
-      <DependentUpon>AddVehicleWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Transactions\AddTransactionPage.xaml.cs">
+      <DependentUpon>AddTransactionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Vehicles\AddVehiclePage.xaml.cs">
+      <DependentUpon>AddVehiclePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -145,26 +152,26 @@
     </Compile>
     <Compile Include="Classes\AppState.cs" />
     <Compile Include="Classes\Database\IDatabaseInteraction.cs" />
-    <Compile Include="Windows\Account\ChangePasswordWindow.xaml.cs">
-      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Account\ChangePasswordPage.xaml.cs">
+      <DependentUpon>ChangePasswordPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Transactions\ModifyTransactionWindow.xaml.cs">
-      <DependentUpon>ModifyTransactionWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Transactions\ModifyTransactionPage.xaml.cs">
+      <DependentUpon>ModifyTransactionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Vehicles\ModifyVehicleWindow.xaml.cs">
-      <DependentUpon>ModifyVehicleWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Vehicles\ModifyVehiclePage.xaml.cs">
+      <DependentUpon>ModifyVehiclePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Account\ViewAccountWindow.xaml.cs">
-      <DependentUpon>ViewAccountWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Account\ViewAccountPage.xaml.cs">
+      <DependentUpon>ViewAccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Account\NewUserWindow.xaml.cs">
-      <DependentUpon>NewUserWindow.xaml</DependentUpon>
+    <Compile Include="Pages\Account\NewUserPage.xaml.cs">
+      <DependentUpon>NewUserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Database\SQLiteDatabaseInteraction.cs" />
     <Compile Include="Classes\Entities\Transaction.cs" />
     <Compile Include="Classes\Entities\User.cs" />
     <Compile Include="Classes\Entities\Vehicle.cs" />
-    <Compile Include="Windows\MainWindow.xaml.cs">
+    <Compile Include="Pages\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -198,7 +205,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Windows\FuelTracker.ico" />
+    <Resource Include="Pages\FuelTracker.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Extensions\Extensions.csproj">

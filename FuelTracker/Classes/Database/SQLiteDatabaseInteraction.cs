@@ -12,20 +12,19 @@ using System.Threading.Tasks;
 
 namespace FuelTracker.Classes.Database
 {
+    /// <summary>Represents database interaction covered by SQLite.</summary>
     internal class SQLiteDatabaseInteraction : IDatabaseInteraction
     {
         // ReSharper disable once InconsistentNaming
         private const string _DATABASENAME = "FuelTracker.sqlite";
 
-        private readonly string _con = $"Data Source = {_DATABASENAME};Version=3;PRAGMA foreign_keys = ON";
+        private readonly string _con = $"Data Source = {_DATABASENAME}; foreign keys = TRUE; Version = 3;";
 
         #region Database Interaction
 
         /// <summary>Verifies that the requested database exists and that its file size is greater than zero. If not, it extracts the embedded database file to the local output folder.</summary>
-        public void VerifyDatabaseIntegrity()
-        {
-            Functions.VerifyFileIntegrity(Assembly.GetExecutingAssembly().GetManifestResourceStream($"FuelTracker.{_DATABASENAME}"), _DATABASENAME);
-        }
+        public void VerifyDatabaseIntegrity() => Functions.VerifyFileIntegrity(
+            Assembly.GetExecutingAssembly().GetManifestResourceStream($"FuelTracker.{_DATABASENAME}"), _DATABASENAME);
 
         #endregion Database Interaction
 
@@ -37,7 +36,7 @@ namespace FuelTracker.Classes.Database
         /// <returns>True is successful authentication</returns>
         public async Task<bool> AuthenticateUser(string username, string password)
         {
-            SQLiteCommand cmd = new SQLiteCommand { CommandText = "SELECT[Password] FROM Users WHERE[Username] = @name" };
+            SQLiteCommand cmd = new SQLiteCommand { CommandText = "SELECT [Password] FROM Users WHERE [Username] = @name" };
             cmd.Parameters.AddWithValue("@name", username);
             DataSet ds = await SQLite.FillDataSet(cmd, _con);
 
@@ -115,7 +114,7 @@ namespace FuelTracker.Classes.Database
                         "INSERT INTO Users([Username], [Password])VALUES(@name, @password)"
                 };
                 cmd.Parameters.AddWithValue("@name", username);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@password", Argon2.HashPassword(password));
                 return await SQLite.ExecuteCommand(_con, cmd);
             }
             AppState.DisplayNotification("That username has already been taken. Please choose another.", "Fuel Tracker");

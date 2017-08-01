@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace FuelTracker.Classes.Database
 {
+    /// <summary>Represents required interactions for implementations of databases.</summary>
     public interface IDatabaseInteraction
     {
         /// <summary>Verifies that the requested database exists and that its file size is greater than zero. If not, it extracts the embedded database file to the local output folder.</summary>

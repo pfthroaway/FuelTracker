@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Extensions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using Extensions;
 
 namespace FuelTracker.Classes.Entities
 {
     /// <summary>Represents a Vehicle owned by a User.</summary>
-    public class Vehicle : IEnumerable<Transaction>, IEquatable<Vehicle>, INotifyPropertyChanged
+    public class Vehicle : INotifyPropertyChanged, IEnumerable<Transaction>, IEquatable<Vehicle>
     {
         private string _nickname, _make, _model;
         private int _vehicleID, _userID, _year;
@@ -66,6 +66,7 @@ namespace FuelTracker.Classes.Entities
         /// <summary>List of Transactions associated with the current Vehicle.</summary>
         public ReadOnlyCollection<Transaction> Transactions => new ReadOnlyCollection<Transaction>(_transactions);
 
+        /// <summary>Miles per gallon</summary>
         public decimal MPG
         {
             get
@@ -93,10 +94,8 @@ namespace FuelTracker.Classes.Entities
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
+        private void OnPropertyChanged(string property) => PropertyChanged?.Invoke(this,
+            new PropertyChangedEventArgs(property));
 
         #endregion Data-Binding
 
@@ -129,6 +128,7 @@ namespace FuelTracker.Classes.Entities
             UpdateMPG();
         }
 
+        /// <summary>Updates data-binding for MPG-related Properties</summary>
         private void UpdateMPG()
         {
             OnPropertyChanged("MPG");
@@ -140,15 +140,9 @@ namespace FuelTracker.Classes.Entities
 
         #region Enumerators
 
-        public IEnumerator<Transaction> GetEnumerator()
-        {
-            return Transactions.GetEnumerator();
-        }
+        public IEnumerator<Transaction> GetEnumerator() => Transactions.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion Enumerators
 
@@ -166,35 +160,17 @@ namespace FuelTracker.Classes.Entities
                    !left.Transactions.Except(right.Transactions).Any();
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(this, obj as Vehicle);
-        }
+        public override bool Equals(object obj) => Equals(this, obj as Vehicle);
 
-        public bool Equals(Vehicle otherVehicle)
-        {
-            return Equals(this, otherVehicle);
-        }
+        public bool Equals(Vehicle otherVehicle) => Equals(this, otherVehicle);
 
-        public static bool operator ==(Vehicle left, Vehicle right)
-        {
-            return Equals(left, right);
-        }
+        public static bool operator ==(Vehicle left, Vehicle right) => Equals(left, right);
 
-        public static bool operator !=(Vehicle left, Vehicle right)
-        {
-            return !Equals(left, right);
-        }
+        public static bool operator !=(Vehicle left, Vehicle right) => !Equals(left, right);
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode() ^ 17;
-        }
+        public override int GetHashCode() => base.GetHashCode() ^ 17;
 
-        public override string ToString()
-        {
-            return $"{UserID} - {Nickname}";
-        }
+        public override string ToString() => $"{UserID} - {Nickname}";
 
         #endregion Override Operators
 
@@ -206,13 +182,13 @@ namespace FuelTracker.Classes.Entities
         }
 
         /// <summary>Initializes an instance of Vehicle by assigning Property values.</summary>
-        /// <param name="vehicleID"></param>
-        /// <param name="userID"></param>
-        /// <param name="nickname"></param>
-        /// <param name="make"></param>
-        /// <param name="model"></param>
-        /// <param name="year"></param>
-        /// <param name="transactions"></param>
+        /// <param name="vehicleID">Vehicle ID</param>
+        /// <param name="userID">User ID of Vehicle owner</param>
+        /// <param name="nickname">Vehicle nickname</param>
+        /// <param name="make">Vehicle make</param>
+        /// <param name="model">Vehicle model</param>
+        /// <param name="year">Vehicle year</param>
+        /// <param name="transactions">Fuel-up transactions for Vehicle</param>
         public Vehicle(int vehicleID, int userID, string nickname, string make, string model, int year, IEnumerable<Transaction> transactions)
         {
             VehicleID = vehicleID;
@@ -228,16 +204,9 @@ namespace FuelTracker.Classes.Entities
         }
 
         /// <summary>Replaces this instance of Vehicle with another instance.</summary>
-        /// <param name="otherVehicle">Instance of Vehicle to replace this instance</param>
-        public Vehicle(Vehicle otherVehicle)
+        /// <param name="other">Instance of Vehicle to replace this instance</param>
+        public Vehicle(Vehicle other) : this(other.VehicleID, other.UserID, other.Nickname, other.Make, other.Model, other.Year, other.Transactions)
         {
-            VehicleID = otherVehicle.VehicleID;
-            UserID = otherVehicle.UserID;
-            Nickname = otherVehicle.Nickname;
-            Make = otherVehicle.Make;
-            Model = otherVehicle.Model;
-            Year = otherVehicle.Year;
-            _transactions = new List<Transaction>(otherVehicle.Transactions);
         }
 
         #endregion Constructors

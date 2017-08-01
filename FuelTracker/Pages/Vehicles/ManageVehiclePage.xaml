@@ -1,0 +1,90 @@
+﻿<Page x:Class="FuelTracker.Pages.Vehicles.ManageVehiclePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Title="Manage Vehicle"
+      Style="{StaticResource PageStyle}"
+      Loaded="ManageVehiclePage_OnLoaded">
+    <Grid x:Name="Grid" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Width="200" Margin="0,0,10,0">
+            <TextBlock x:Name="LblVehicleName" Text="{Binding Path=Nickname}" TextWrapping="Wrap" FontSize="20" Margin="0,0,0,10" />
+            <TextBlock x:Name="LblMPG" Text="{Binding Path=MPGToStringWithText}" FontSize="20" Margin="0,0,0,10" />
+            <TextBlock x:Name="LblBalance" Text="{Binding Path=BalanceToStringWithText}" FontSize="20" Margin="0,0,0,10" />
+        </StackPanel>
+        <ListView x:Name="LVTransactions" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Height="610" SelectionChanged="LVTransactions_SelectionChanged" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=DateToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Date" Click="LVTransactionsColumnHeader_Click" Content="Date" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="130" DisplayMemberBinding="{Binding Path=Store}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Store" Click="LVTransactionsColumnHeader_Click" Content="Store" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=Octane}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Octane" Click="LVTransactionsColumnHeader_Click" Content="Octane" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=DistanceToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Distance" Click="LVTransactionsColumnHeader_Click" Content="Distance" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=OdometerToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Odometer" Click="LVTransactionsColumnHeader_Click" Content="Odometer" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=GallonsToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Gallons" Click="LVTransactionsColumnHeader_Click" Content="Gallons" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=MPGToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="MPG" Click="LVTransactionsColumnHeader_Click" Content="MPG" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=Range}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Range" Click="LVTransactionsColumnHeader_Click" Content="Range" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=PriceToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Price" Click="LVTransactionsColumnHeader_Click" Content="Price/Gal" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=TotalPriceToString}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="TotalPrice" Click="LVTransactionsColumnHeader_Click" Content="Total Price" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,10,0">
+            <Button x:Name="BtnNewTransaction" Width="175" Content="_Add Fuel-up" Click="BtnAddFuelup_Click" Margin="0,0,0,10" IsDefault="True" />
+            <Button x:Name="BtnModifyTransaction" Width="175" Content="_Modify Fuel-up" Click="BtnModifyTransaction_Click"  Margin="0,0,0,10" IsEnabled="False" />
+            <Button x:Name="BtnDeleteTransaction" Width="175" Content="_Delete Fuel-up" Click="BtnDeleteTransaction_Click"  Margin="0,0,0,10" IsEnabled="False" />
+            <Button x:Name="BtnSearchTransactions" Width="175" Content="_Search Fuel-ups" Click="BtnSearchTransactions_Click"  Margin="0,0,0,10" />
+            <Button x:Name="BtnModifyVehicle" Width="175" Content="_Modify Vehicle" Click="BtnModifyVehicle_Click"  Margin="0,0,0,10" />
+            <Button x:Name="BtnDeleteVehicle" Width="175" Content="_Delete Vehicle" Click="BtnDeleteVehicle_Click"  Margin="0,0,0,10" />
+            <Button x:Name="BtnBack" Width="175" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Page>
