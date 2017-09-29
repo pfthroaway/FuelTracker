@@ -37,6 +37,13 @@ namespace FuelTracker.Pages.Account
             DataContext = SelectedVehicle;
         }
 
+        private void ToggleButtons(bool enabled)
+        {
+            BtnManageFuelups.IsEnabled = enabled;
+            BtnModifyVehicle.IsEnabled = enabled;
+            BtnDeleteVehicle.IsEnabled = enabled;
+        }
+
         #region Data-Binding
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,19 +55,40 @@ namespace FuelTracker.Pages.Account
 
         #region Button-Click Methods
 
+        private void BtnChangePassword_Click(object sender, RoutedEventArgs e) =>
+            AppState.Navigate(new ChangePasswordPage());
+
+        private async void BtnDeleteVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "Are you sure you want to delete this vehicle?";
+            if (_selectedVehicle.Transactions.Count > 0)
+                message += $" You will also be deleting its {_selectedVehicle.Transactions.Count} fuel-ups.";
+            message += " This action cannot be undone.";
+            if (AppState.YesNoNotification(message, "Fuel Tracker"))
+                if (await AppState.DeleteVehicle(_selectedVehicle))
+                {
+                    AppState.CurrentUser.RemoveVehicle(_selectedVehicle);
+                    RefreshItemsSource();
+                }
+        }
+
         private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             AppState.CurrentUser = new User();
             ClosePage();
         }
 
-        private void BtnChangePassword_Click(object sender, RoutedEventArgs e) =>
-            AppState.Navigate(new ChangePasswordPage());
+        private void BtnModifyVehicle_Click(object sender, RoutedEventArgs e) => AppState.Navigate(
+            new ModifyVehiclePage { UnmodifiedVehicle = _selectedVehicle, ModifiedVehicle = new Vehicle(_selectedVehicle) });
 
         private void BtnNewVehicle_Click(object sender, RoutedEventArgs e) => AppState.Navigate(new AddVehiclePage());
 
-        private void BtnManageVehicle_Click(object sender, RoutedEventArgs e) => AppState.Navigate(
-            new ManageVehiclePage { CurrentVehicle = SelectedVehicle });
+        private void BtnManageVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            AppState.Navigate(
+                new ManageFuelupsPage { CurrentVehicle = SelectedVehicle });
+            //LVVehicles.UnselectAll();
+        }
 
         #endregion Button-Click Methods
 
@@ -72,7 +100,7 @@ namespace FuelTracker.Pages.Account
         private void LVVehicles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedVehicle = (Vehicle)LVVehicles.SelectedItem;
-            BtnManageVehicle.IsEnabled = LVVehicles.SelectedIndex >= 0; ;
+            ToggleButtons(LVVehicles.SelectedIndex >= 0);
             RefreshItemsSource();
         }
 

@@ -11,7 +11,7 @@ using System.Windows.Controls;
 namespace FuelTracker.Pages.Vehicles
 {
     /// <summary>Interaction logic for ViewVehicleTransactionsPage.xaml</summary>
-    public partial class ManageVehiclePage
+    public partial class ManageFuelupsPage
     {
         private Vehicle _currentVehicle;
         private ListViewSort _sort = new ListViewSort();
@@ -50,7 +50,7 @@ namespace FuelTracker.Pages.Vehicles
         #region Click
 
         private void BtnAddFuelup_Click(object sender, RoutedEventArgs e) => AppState.Navigate(
-            new AddTransactionPage { CurrentVehicle = CurrentVehicle });
+            new AddTransactionPage { PreviousPage = this, CurrentVehicle = CurrentVehicle });
 
         private void BtnBack_Click(object sender, RoutedEventArgs e) => ClosePage();
 
@@ -65,20 +65,6 @@ namespace FuelTracker.Pages.Vehicles
                 }
         }
 
-        private async void BtnDeleteVehicle_Click(object sender, RoutedEventArgs e)
-        {
-            string message = "Are you sure you want to delete this vehicle?";
-            if (CurrentVehicle.Transactions.Count > 0)
-                message += $" You will also be deleting its {CurrentVehicle.Transactions.Count} fuel-ups.";
-            message += " This action cannot be undone.";
-            if (AppState.YesNoNotification(message, "Fuel Tracker"))
-                if (await AppState.DeleteVehicle(_currentVehicle))
-                {
-                    AppState.CurrentUser.RemoveVehicle(CurrentVehicle);
-                    ClosePage();
-                }
-        }
-
         private void BtnModifyTransaction_Click(object sender, RoutedEventArgs e) => AppState.Navigate(
             new ModifyTransactionPage
             {
@@ -86,8 +72,6 @@ namespace FuelTracker.Pages.Vehicles
                 ModifiedTransaction = new Transaction(_selectedTransaction),
                 CurrentVehicle = CurrentVehicle
             });
-
-        private void BtnModifyVehicle_Click(object sender, RoutedEventArgs e) => AppState.Navigate(new ModifyVehiclePage { UnmodifiedVehicle = CurrentVehicle, ModifiedVehicle = new Vehicle(CurrentVehicle) });
 
         private void BtnSearchTransactions_Click(object sender, RoutedEventArgs e)
         {
@@ -111,7 +95,7 @@ namespace FuelTracker.Pages.Vehicles
         /// <summary>Closes the Page.</summary>
         private void ClosePage() => AppState.GoBack();
 
-        public ManageVehiclePage() => InitializeComponent();
+        public ManageFuelupsPage() => InitializeComponent();
 
         private void ManageVehiclePage_OnLoaded(object sender, RoutedEventArgs e)
         {

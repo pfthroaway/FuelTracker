@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace FuelTracker.Classes.Entities
 {
-    /// <summary>Represents a User who owns vehicle(s).</summary>
+    /// <summary>Represents a User who owns Vehicle(s).</summary>
     public class User : INotifyPropertyChanged, IEnumerable<Vehicle>, IEquatable<User>
     {
         private int _id;
@@ -67,11 +67,11 @@ namespace FuelTracker.Classes.Entities
         #region Vehicle Management
 
         /// <summary>Adds a Vehicle to the list of vehicles.</summary>
-        /// <param name="vehicle">Vehicle to be removed</param>
-        internal void AddVehicle(Vehicle vehicle)
+        /// <param name="newVehicle">Vehicle to be removed</param>
+        internal void AddVehicle(Vehicle newVehicle)
         {
-            _vehicles.Add(vehicle);
-            _vehicles = _vehicles.OrderBy(veh => veh.Nickname).ToList();
+            _vehicles.Add(newVehicle);
+            _vehicles = _vehicles.OrderBy(vehicle => vehicle.Nickname).ToList();
             OnPropertyChanged("Vehicles");
         }
 
@@ -81,7 +81,8 @@ namespace FuelTracker.Classes.Entities
         internal void ModifyVehicle(Vehicle oldVehicle, Vehicle newVehicle)
         {
             _vehicles.Replace(oldVehicle, newVehicle);
-            _vehicles = _vehicles.OrderBy(trans => trans.VehicleID).ToList();
+            _vehicles = _vehicles.OrderBy(trans => trans.Nickname).ToList();
+            OnPropertyChanged("Vehicles");
         }
 
         /// <summary>Removes a Vehicle from the list of vehicles.</summary>

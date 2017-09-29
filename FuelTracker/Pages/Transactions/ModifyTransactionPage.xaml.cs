@@ -54,8 +54,7 @@ namespace FuelTracker.Pages.Transactions
             if (await ModifyTransaction())
                 ClosePage();
             else
-                AppState.DisplayNotification("Unable to modify transaction.", "Fuel Tracker")
-                    ;
+                AppState.DisplayNotification("Unable to modify transaction.", "Fuel Tracker");
         }
 
         private void BtnReset_Click(object sender, RoutedEventArgs e) => DisplayOriginalTransaction();
@@ -77,6 +76,18 @@ namespace FuelTracker.Pages.Transactions
         private void Txt_GotFocus(object sender, RoutedEventArgs e) => Functions.TextBoxGotFocus(sender);
 
         private void Decimal_PreviewKeyDown(object sender, KeyEventArgs e) => Functions.PreviewKeyDown(e, KeyType.Decimals);
+
+        private void Decimal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Functions.TextBoxTextChanged(sender, KeyType.Decimals);
+            TextChanged();
+        }
+
+        private void Integer_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Functions.TextBoxTextChanged(sender, KeyType.Integers);
+            TextChanged();
+        }
 
         private void Txt_TextChanged(object sender, TextChangedEventArgs e) => TextChanged();
 

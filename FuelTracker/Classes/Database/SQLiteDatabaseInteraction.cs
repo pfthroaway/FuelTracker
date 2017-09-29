@@ -131,7 +131,7 @@ namespace FuelTracker.Classes.Database
         public async Task<bool> DeleteTransaction(Transaction deleteTransaction)
         {
             SQLiteCommand cmd = new SQLiteCommand { CommandText = "DELETE FROM Transactions WHERE [TransactionID] = @transactionID" };
-            cmd.Parameters.AddWithValue("@transactionID", deleteTransaction.VehicleID);
+            cmd.Parameters.AddWithValue("@transactionID", deleteTransaction.TranscationID);
 
             return await SQLite.ExecuteCommand(_con, cmd);
         }
@@ -233,7 +233,7 @@ namespace FuelTracker.Classes.Database
         /// <returns>Returns true if deletion is successful.</returns>
         public async Task<bool> DeleteVehicle(Vehicle deleteVehicle)
         {
-            SQLiteCommand cmd = new SQLiteCommand { CommandText = "DELETE FROM Vehicles WHERE [VehicleID] = @vehicleID; DELETE FROM Transactions WHERE [VehicleID] = @vehicleID" };
+            SQLiteCommand cmd = new SQLiteCommand { CommandText = "DELETE FROM Transactions WHERE [VehicleID] = @vehicleID, DELETE FROM Vehicles WHERE [VehicleID] = @vehicleID" };
             cmd.Parameters.AddWithValue("@vehicleID", deleteVehicle.VehicleID);
 
             return await SQLite.ExecuteCommand(_con, cmd);

@@ -3,6 +3,7 @@ using Extensions.DataTypeHelpers;
 using Extensions.Enums;
 using FuelTracker.Classes;
 using FuelTracker.Classes.Entities;
+using FuelTracker.Pages.Vehicles;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ namespace FuelTracker.Pages.Transactions
     /// <summary>Interaction logic for AddTransaction.xaml</summary>
     public partial class AddTransactionPage
     {
+        internal ManageFuelupsPage PreviousPage { get; set; }
         internal Vehicle CurrentVehicle { get; set; }
 
         /// <summary>Attempts to add a Transaction to the database.</summary>
@@ -25,12 +27,25 @@ namespace FuelTracker.Pages.Transactions
                 DecimalHelper.Parse(TxtGallons.Text), DecimalHelper.Parse(TxtPrice.Text),
                 DecimalHelper.Parse(TxtOdometer.Text), Int32Helper.Parse(TxtRange.Text));
 
-            if (await AppState.NewTransaction(newTransaction))
+            // if the odometer or distance weren't both set, determine the distance/odometer so MPG/odometer will be calculated properly
+            if (newTransaction.Distance <= 0M)
             {
-                CurrentVehicle.AddTransaction(newTransaction);
-                return true;
+                if (newTransaction.Odometer > 0M && CurrentVehicle.Transactions.Count > 0)
+                    newTransaction.Distance = newTransaction.Odometer - CurrentVehicle.Transactions[0].Odometer;
+                else if (newTransaction.Odometer >= 0M && CurrentVehicle.Transactions.Count == 0)
+                    newTransaction.Distance = newTransaction.Odometer;
             }
-            return false;
+            else if (newTransaction.Odometer <= 0M)
+            {
+                if (newTransaction.Distance > 0M && CurrentVehicle.Transactions.Count > 0)
+                    newTransaction.Odometer = CurrentVehicle.Transactions[0].Odometer + newTransaction.Distance;
+                else if (newTransaction.Distance > 0M && CurrentVehicle.Transactions.Count == 0)
+                    newTransaction.Odometer = newTransaction.Distance;
+            }
+
+            if (!await AppState.NewTransaction(newTransaction)) return false;
+            CurrentVehicle.AddTransaction(newTransaction);
+            return true;
         }
 
         /// <summary>Resets all values to default status.</summary>
@@ -96,6 +111,18 @@ namespace FuelTracker.Pages.Transactions
 
         private void Decimal_PreviewKeyDown(object sender, KeyEventArgs e) => Functions.PreviewKeyDown(e, KeyType.Decimals);
 
+        private void Decimal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Functions.TextBoxTextChanged(sender, KeyType.Decimals);
+            TextChanged();
+        }
+
+        private void Integer_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Functions.TextBoxTextChanged(sender, KeyType.Integers);
+            TextChanged();
+        }
+
         private void Txt_TextChanged(object sender, TextChangedEventArgs e) => TextChanged();
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => TextChanged();
@@ -107,7 +134,11 @@ namespace FuelTracker.Pages.Transactions
         #region Page-Manipulation Methods
 
         /// <summary>Closes the Page.</summary>
-        private void ClosePage() => AppState.GoBack();
+        private void ClosePage()
+        {
+            PreviousPage.RefreshItemsSource();
+            AppState.GoBack();
+        }
 
         public AddTransactionPage()
         {
@@ -115,7 +146,11 @@ namespace FuelTracker.Pages.Transactions
             TxtStore.Focus();
         }
 
-        private void AddTransactionPage_OnLoaded(object sender, RoutedEventArgs e) => AppState.CalculateScale(Grid);
+        private void AddTransactionPage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            AppState.CalculateScale(Grid);
+            DataContext = CurrentVehicle;
+        }
 
         #endregion Page-Manipulation Methods
     }

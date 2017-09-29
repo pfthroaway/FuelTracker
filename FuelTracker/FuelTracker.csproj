@@ -92,7 +92,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Vehicles\ManageVehiclePage.xaml">
+    <Page Include="Pages\Vehicles\ManageFuelupsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,8 +137,8 @@
     <Compile Include="Pages\Transactions\SearchTransactionsPage.xaml.cs">
       <DependentUpon>SearchTransactionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Vehicles\ManageVehiclePage.xaml.cs">
-      <DependentUpon>ManageVehiclePage.xaml</DependentUpon>
+    <Compile Include="Pages\Vehicles\ManageFuelupsPage.xaml.cs">
+      <DependentUpon>ManageFuelupsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Transactions\AddTransactionPage.xaml.cs">
       <DependentUpon>AddTransactionPage.xaml</DependentUpon>

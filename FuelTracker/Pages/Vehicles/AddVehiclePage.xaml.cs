@@ -26,7 +26,9 @@ namespace FuelTracker.Pages.Vehicles
 
         private async void BtnAddVehicle_Click(object sender, RoutedEventArgs e)
         {
-            Vehicle newVehicle = new Vehicle(await AppState.GetNextVehicleIndex(), AppState.CurrentUser.ID, TxtNickname.Text, TxtMake.Text, TxtModel.Text, Int32Helper.Parse(TxtYear.Text), new List<Transaction>());
+            Vehicle newVehicle = new Vehicle(await AppState.GetNextVehicleIndex(), AppState.CurrentUser.ID,
+                TxtNickname.Text, TxtMake.Text, TxtModel.Text, Int32Helper.Parse(TxtYear.Text),
+                new List<Transaction>());
             if (await AppState.NewVehicle(newVehicle))
             {
                 AppState.CurrentUser.AddVehicle(newVehicle);
@@ -42,11 +44,24 @@ namespace FuelTracker.Pages.Vehicles
 
         #region Text Manipulation
 
-        /// <summary>Handles all the TextBoxes TextChanged events.</summary>
-        private void TextChanged(object sender, TextChangedEventArgs e)
+        private void Integer_TextChanged(object sender, TextChangedEventArgs e)
         {
-            BtnAddVehicle.IsEnabled = TxtNickname.Text.Length > 0 && TxtMake.Text.Length > 0 && TxtModel.Text.Length > 0 && TxtYear.Text.Length == 4;
-            BtnReset.IsEnabled = TxtNickname.Text.Length > 0 || TxtMake.Text.Length > 0 || TxtModel.Text.Length > 0 || TxtYear.Text.Length > 0;
+            Functions.TextBoxTextChanged(sender, KeyType.Integers);
+            TextChanged();
+        }
+
+        /// <summary>Handles all the TextBoxes Txt_TextChanged events.</summary>
+        private void Txt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextChanged();
+        }
+
+        private void TextChanged()
+        {
+            BtnAddVehicle.IsEnabled = TxtNickname.Text.Length > 0 && TxtMake.Text.Length > 0 &&
+                                      TxtModel.Text.Length > 0 && TxtYear.Text.Length == 4;
+            BtnReset.IsEnabled = TxtNickname.Text.Length > 0 || TxtMake.Text.Length > 0 || TxtModel.Text.Length > 0 ||
+                                 TxtYear.Text.Length > 0;
         }
 
         private void Txt_GotFocus(object sender, RoutedEventArgs e) => Functions.TextBoxGotFocus(sender);

@@ -27,7 +27,7 @@ namespace FuelTracker.Pages.Vehicles
 
         private async void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            ModifiedVehicle = new Vehicle(await AppState.GetNextVehicleIndex(), AppState.CurrentUser.ID, TxtNickname.Text, TxtMake.Text, TxtModel.Text, Int32Helper.Parse(TxtYear.Text), UnmodifiedVehicle.Transactions);
+            ModifiedVehicle = new Vehicle(UnmodifiedVehicle.VehicleID, AppState.CurrentUser.ID, TxtNickname.Text, TxtMake.Text, TxtModel.Text, Int32Helper.Parse(TxtYear.Text), UnmodifiedVehicle.Transactions);
             if (await AppState.ModifyVehicle(UnmodifiedVehicle, ModifiedVehicle))
             {
                 AppState.CurrentUser.ModifyVehicle(UnmodifiedVehicle, ModifiedVehicle);
