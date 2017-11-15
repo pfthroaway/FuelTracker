@@ -38,7 +38,7 @@ namespace FuelTracker.Classes.Database
         {
             SQLiteCommand cmd = new SQLiteCommand { CommandText = "SELECT [Password] FROM Users WHERE [Username] = @name" };
             cmd.Parameters.AddWithValue("@name", username);
-            DataSet ds = await SQLite.FillDataSet(cmd, _con);
+            DataSet ds = await SQLite.FillDataSet(_con, cmd);
 
             return ds.Tables[0].Rows.Count > 0 &&
                    Argon2.ValidatePassword(ds.Tables[0].Rows[0]["Password"].ToString(), password);
@@ -74,7 +74,7 @@ namespace FuelTracker.Classes.Database
         /// <returns>Next UserID value</returns>
         public async Task<int> GetNextUserIndex()
         {
-            DataSet ds = await SQLite.FillDataSet("SELECT * FROM SQLITE_SEQUENCE WHERE [name] = 'Users'", _con);
+            DataSet ds = await SQLite.FillDataSet(_con, "SELECT * FROM SQLITE_SEQUENCE WHERE [name] = 'Users'");
 
             return ds.Tables[0].Rows.Count > 0 ? Int32Helper.Parse(ds.Tables[0].Rows[0]["seq"]) + 1 : 1;
         }
@@ -87,7 +87,7 @@ namespace FuelTracker.Classes.Database
             User loadUser = new User();
             SQLiteCommand cmd = new SQLiteCommand { CommandText = "SELECT * FROM Users WHERE [Username] = @name" };
             cmd.Parameters.AddWithValue("@name", username);
-            DataSet ds = await SQLite.FillDataSet(cmd, _con);
+            DataSet ds = await SQLite.FillDataSet(_con, cmd);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -140,7 +140,7 @@ namespace FuelTracker.Classes.Database
         /// <returns>Next TransactionID value</returns>
         public async Task<int> GetNextTransactionIndex()
         {
-            DataSet ds = await SQLite.FillDataSet("SELECT * FROM SQLITE_SEQUENCE WHERE name = 'Transactions'", _con);
+            DataSet ds = await SQLite.FillDataSet(_con, "SELECT * FROM SQLITE_SEQUENCE WHERE name = 'Transactions'");
 
             return ds.Tables[0].Rows.Count > 0 ? Int32Helper.Parse(ds.Tables[0].Rows[0]["seq"]) + 1 : 1;
         }
@@ -153,7 +153,7 @@ namespace FuelTracker.Classes.Database
             SQLiteCommand cmd = new SQLiteCommand { CommandText = "SELECT * FROM Transactions WHERE VehicleID = @id" };
             cmd.Parameters.AddWithValue("@id", vehicleID);
 
-            DataSet ds = await SQLite.FillDataSet(cmd, _con);
+            DataSet ds = await SQLite.FillDataSet(_con, cmd);
 
             List<Transaction> transactions = new List<Transaction>();
 
@@ -243,7 +243,7 @@ namespace FuelTracker.Classes.Database
         /// <returns>Next VehicleID value</returns>
         public async Task<int> GetNextVehicleIndex()
         {
-            DataSet ds = await SQLite.FillDataSet("SELECT * FROM SQLITE_SEQUENCE WHERE name = 'Vehicles'", _con);
+            DataSet ds = await SQLite.FillDataSet(_con, "SELECT * FROM SQLITE_SEQUENCE WHERE name = 'Vehicles'");
 
             if (ds.Tables[0].Rows.Count > 0)
                 return Int32Helper.Parse(ds.Tables[0].Rows[0]["seq"]) + 1;
@@ -257,7 +257,7 @@ namespace FuelTracker.Classes.Database
         {
             SQLiteCommand cmd = new SQLiteCommand { CommandText = "SELECT * FROM Vehicles WHERE UserID = @id" };
             cmd.Parameters.AddWithValue("@id", userID);
-            DataSet ds = await SQLite.FillDataSet(cmd, _con);
+            DataSet ds = await SQLite.FillDataSet(_con, cmd);
             List<Vehicle> vehicles = new List<Vehicle>();
             if (ds.Tables[0].Rows.Count > 0)
             {
