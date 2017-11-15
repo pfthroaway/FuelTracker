@@ -83,12 +83,8 @@ namespace FuelTracker.Pages.Account
 
         private void BtnNewVehicle_Click(object sender, RoutedEventArgs e) => AppState.Navigate(new AddVehiclePage());
 
-        private void BtnManageVehicle_Click(object sender, RoutedEventArgs e)
-        {
-            AppState.Navigate(
-                new ManageFuelupsPage { CurrentVehicle = SelectedVehicle });
-            //LVVehicles.UnselectAll();
-        }
+        private void BtnManageVehicle_Click(object sender, RoutedEventArgs e) => AppState.Navigate(
+                new ManageFuelupsPage { CurrentVehicle = SelectedVehicle });//LVVehicles.UnselectAll();
 
         #endregion Button-Click Methods
 

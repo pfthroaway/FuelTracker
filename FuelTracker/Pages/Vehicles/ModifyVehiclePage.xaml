@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      Title="Modify Vehicle"
+      Title="Fuel Tracker - Modify Vehicle"
       Style="{StaticResource PageStyle}"
       Loaded="ModifyVehiclePage_OnLoaded">
     <Grid x:Name="Grid" Margin="10">
@@ -40,8 +40,8 @@
         </TextBlock>
         <TextBox x:Name="TxtMake" Grid.Column="0" Grid.Row="3" Width="200" TextChanged="TextChanged" GotFocus="Txt_GotFocus" Margin="0,0,10,10" />
         <TextBox x:Name="TxtModel" Grid.Column="1" Grid.Row="3" Width="200" TextChanged="TextChanged" GotFocus="Txt_GotFocus" Margin="0,0,0,10" />
-        <Button x:Name="BtnSave" Grid.Column="0" Grid.Row="4" Width="125" Content="_Save" IsDefault="True" IsEnabled="False" Click="BtnSave_Click" Margin="0,0,0,10" />
-        <Button x:Name="BtnReset" Grid.Column="1" Grid.Row="4" Width="125" Content="_Reset" IsEnabled="False" Click="BtnReset_Click" Margin="0,0,0,10" />
-        <Button x:Name="BtnCancel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="125" Content="_Cancel" IsCancel="True" Click="BtnCancel_Click" />
+        <Button x:Name="BtnSave" Grid.Column="0" Grid.Row="4" Width="145" Content="_Save" IsDefault="True" IsEnabled="False" Click="BtnSave_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnReset" Grid.Column="1" Grid.Row="4" Width="145" Content="_Reset" IsEnabled="False" Click="BtnReset_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnCancel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="145" Content="_Cancel" IsCancel="True" Click="BtnCancel_Click" />
     </Grid>
 </Page>

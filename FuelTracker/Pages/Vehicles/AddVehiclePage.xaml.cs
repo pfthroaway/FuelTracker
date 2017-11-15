@@ -51,10 +51,7 @@ namespace FuelTracker.Pages.Vehicles
         }
 
         /// <summary>Handles all the TextBoxes Txt_TextChanged events.</summary>
-        private void Txt_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextChanged();
-        }
+        private void Txt_TextChanged(object sender, TextChangedEventArgs e) => TextChanged();
 
         private void TextChanged()
         {

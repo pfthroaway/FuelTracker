@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      Title="New User"
+      Title="Fuel Tracker - New User"
       Style="{StaticResource PageStyle}"
       Loaded="NewUserPage_OnLoaded">
     <Grid x:Name="Grid" Margin="10">
@@ -30,13 +30,13 @@
             <Run Text="Password:" />
             <Run Text="*" Foreground="Red" />
         </TextBlock>
-        <PasswordBox x:Name="PswdPassword" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="300" PasswordChanged="Pswd_PasswordChanged" GotFocus="Pswd_GotFocus" Margin="0,0,0,20" />
+        <PasswordBox x:Name="PswdPassword" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Width="300" PasswordChanged="Pswd_PasswordChanged" GotFocus="Pswd_GotFocus" Margin="0,0,0,10" />
         <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" TextAlignment="Center" Margin="0,0,0,10">
             <Run Text="Confirm Password:" />
             <Run Text="*" Foreground="Red" />
         </TextBlock>
         <PasswordBox x:Name="PswdConfirm" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="300" PasswordChanged="Pswd_PasswordChanged" GotFocus="Pswd_GotFocus" Margin="0,0,0,20" />
-        <Button x:Name="BtnCreate" Grid.Column="0" Grid.Row="6" Width="125" Content="_Create" IsDefault="True" IsEnabled="False" Click="BtnCreate_Click" />
-        <Button x:Name="BtnCancel" Grid.Column="1" Grid.Row="6" Width="125" Content="C_ancel" IsCancel="True" Click="BtnCancel_Click" />
+        <Button x:Name="BtnCreate" Grid.Column="0" Grid.Row="6" Width="145" Content="_Create" IsDefault="True" IsEnabled="False" Click="BtnCreate_Click" Margin="0,0,10,0" />
+        <Button x:Name="BtnCancel" Grid.Column="1" Grid.Row="6" Width="145" Content="C_ancel" IsCancel="True" Click="BtnCancel_Click" />
     </Grid>
 </Page>

@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      Title="Modify Fuel-up"
+      Title="Fuel Tracker - Modify Fuel-up"
       Style="{StaticResource PageStyle}"
       Loaded="ModifyTransactionPage_OnLoaded">
     <Grid x:Name="Grid" Margin="10">

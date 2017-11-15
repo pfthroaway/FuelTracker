@@ -4,7 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-      Title="Add Vehicle"
+      Title="Fuel Tracker - Add Vehicle"
       Style="{StaticResource PageStyle}"
       Loaded="AddVehiclePage_OnLoaded">
     <Grid x:Name="Grid" Margin="10">
@@ -40,8 +40,8 @@
         </TextBlock>
         <TextBox x:Name="TxtMake" Grid.Column="0" Grid.Row="3" Width="200" TextChanged="Txt_TextChanged" GotFocus="Txt_GotFocus" Margin="0,0,10,10" />
         <TextBox x:Name="TxtModel" Grid.Column="1" Grid.Row="3" Width="200" TextChanged="Txt_TextChanged" GotFocus="Txt_GotFocus" Margin="0,0,0,10" />
-        <Button x:Name="BtnAddVehicle" Grid.Column="0" Grid.Row="4" Width="125" Content="_Add Vehicle" IsDefault="True" IsEnabled="False" Click="BtnAddVehicle_Click" Margin="0,0,0,10" />
-        <Button x:Name="BtnReset" Grid.Column="1" Grid.Row="4" Width="125" Content="_Reset" IsEnabled="False" Click="BtnReset_Click" Margin="0,0,0,10" />
-        <Button x:Name="BtnCancel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="125" Content="_Cancel" IsCancel="True" Click="BtnCancel_Click" />
+        <Button x:Name="BtnAddVehicle" Grid.Column="0" Grid.Row="4" Width="145" Content="_Add Vehicle" IsDefault="True" IsEnabled="False" Click="BtnAddVehicle_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnReset" Grid.Column="1" Grid.Row="4" Width="145" Content="_Reset" IsEnabled="False" Click="BtnReset_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnCancel" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Width="145" Content="_Cancel" IsCancel="True" Click="BtnCancel_Click" />
     </Grid>
 </Page>
