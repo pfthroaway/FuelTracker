@@ -1,0 +1,20 @@
+﻿<Window x:Name="WindowMain"
+        x:Class="FuelTracker.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Style="{StaticResource WindowStyle}"
+        Title="{Binding Path=Content.Title, ElementName=MainFrame}"
+        Icon="/Views/FuelTracker.ico"
+        WindowState="Maximized"
+        ResizeMode="CanResize"
+        SizeToContent="Manual"
+        MinHeight="600"
+        MinWidth="1032"
+        Loaded="WindowMain_Loaded">
+    <Viewbox Stretch="Uniform" Margin="20">
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="ViewVehiclesPage.xaml" />
+    </Viewbox>
+</Window>
