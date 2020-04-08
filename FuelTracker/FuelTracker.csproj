@@ -81,14 +81,6 @@
     <Compile Include="Views\ViewVehiclesPage.xaml.cs">
       <DependentUpon>ViewVehiclesPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\Transactions\SearchTransactionsResultsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Transactions\SearchTransactionsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Vehicles\ManageFuelupsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,12 +107,6 @@
     </Page>
     <Compile Include="AppData.cs" />
     <Compile Include="Models\BaseINPC.cs" />
-    <Compile Include="Views\Transactions\SearchTransactionsResultsPage.xaml.cs">
-      <DependentUpon>SearchTransactionsResultsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Transactions\SearchTransactionsPage.xaml.cs">
-      <DependentUpon>SearchTransactionsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Vehicles\ManageFuelupsPage.xaml.cs">
       <DependentUpon>ManageFuelupsPage.xaml</DependentUpon>
     </Compile>

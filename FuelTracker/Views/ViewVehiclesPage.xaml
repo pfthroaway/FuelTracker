@@ -66,10 +66,10 @@
             </Grid>
         </GroupBox>
         <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button x:Name="BtnManageFuelups" Width="270" Content="_Manage Fuel-ups" IsEnabled="False" Click="BtnManageVehicle_Click" IsDefault="True" Margin="0,0,10,0" />
-            <Button x:Name="BtnNewVehicle" Width="270" Content="_New Vehicle" Margin="0,0,10,0" Click="BtnNewVehicle_Click" />
-            <Button x:Name="BtnModifyVehicle" Width="270" Content="_Modify Vehicle" IsEnabled="False" Click="BtnModifyVehicle_Click" />
-            <Button x:Name="BtnDeleteVehicle" Width="270" Content="_Delete Vehicle" IsEnabled="False" Click="BtnDeleteVehicle_Click" />
+            <Button x:Name="BtnManageFuelups" Width="268.5" Content="_Manage Fuel-ups" IsEnabled="False" Click="BtnManageVehicle_Click" IsDefault="True" Margin="0,0,10,0" />
+            <Button x:Name="BtnNewVehicle" Width="268.5" Content="_New Vehicle" Margin="0,0,10,0" Click="BtnNewVehicle_Click" />
+            <Button x:Name="BtnModifyVehicle" Width="268.5" Content="_Modify Vehicle" IsEnabled="False" Click="BtnModifyVehicle_Click" Margin="0,0,10,0" />
+            <Button x:Name="BtnDeleteVehicle" Width="268.5" Content="_Delete Vehicle" IsEnabled="False" Click="BtnDeleteVehicle_Click" />
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
         </StackPanel>

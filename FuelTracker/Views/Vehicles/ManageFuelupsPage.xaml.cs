@@ -74,11 +74,6 @@ namespace FuelTracker.Views.Vehicles
                 CurrentVehicle = CurrentVehicle
             });
 
-        private void BtnSearchTransactions_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO Implement Searching Fuel Transactions
-        }
-
         private void LVTransactions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BtnModifyTransaction.IsEnabled = LVTransactions.SelectedIndex >= 0;

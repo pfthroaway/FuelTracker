@@ -75,11 +75,10 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="BtnNewTransaction" Width="288" Content="_Add Fuel-up" Click="BtnAddFuelup_Click" IsDefault="True" Margin="0,0,10,0" />
-            <Button x:Name="BtnModifyTransaction" Width="288" Content="_Modify Fuel-up" Click="BtnModifyTransaction_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnDeleteTransaction" Width="288" Content="_Delete Fuel-up" Click="BtnDeleteTransaction_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnSearchTransactions" Width="288" Content="_Search Fuel-ups" Click="BtnSearchTransactions_Click" Margin="0,0,10,0" />
-            <Button x:Name="BtnBack" Width="288" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+            <Button x:Name="BtnNewTransaction" Width="362.75" Content="_Add Fuel-up" Click="BtnAddFuelup_Click" IsDefault="True" Margin="0,0,10,0" />
+            <Button x:Name="BtnModifyTransaction" Width="362.75" Content="_Modify Fuel-up" Click="BtnModifyTransaction_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnDeleteTransaction" Width="362.75" Content="_Delete Fuel-up" Click="BtnDeleteTransaction_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnBack" Width="362.75" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
         </StackPanel>
     </Grid>
 </Page>
