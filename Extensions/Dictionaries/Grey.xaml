@@ -1,7 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Grey/Border.xaml" />
         <ResourceDictionary Source="Grey/Button.xaml" />
+        <ResourceDictionary Source="Grey/Calendar.xaml" />
         <ResourceDictionary Source="Grey/CheckBox.xaml" />
         <ResourceDictionary Source="Grey/ComboBox.xaml" />
         <ResourceDictionary Source="Grey/DatePicker.xaml" />

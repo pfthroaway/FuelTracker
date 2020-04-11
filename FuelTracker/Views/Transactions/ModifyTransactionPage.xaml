@@ -39,7 +39,7 @@
             <Run Text="Distance:" />
             <Run Text="*" Foreground="Orange" />
         </TextBlock>
-        <DatePicker x:Name="TransactionDate" Grid.Column="0" Grid.Row="2" Width="400" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" SelectedDateChanged="DatePicker_SelectedDateChanged" Margin="0,0,10,10" />
+        <DatePicker x:Name="TransactionDate" CalendarStyle="{StaticResource CalendarStyle}" Grid.Column="0" Grid.Row="2" Width="400" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" SelectedDateChanged="DatePicker_SelectedDateChanged" Margin="0,0,10,10" />
         <TextBox x:Name="TxtStore" Grid.Column="1" Grid.Row="2" Width="400" MaxLength="30" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,10,10" />
         <TextBox x:Name="TxtOctane" Grid.Column="2" Grid.Row="2" Width="400" MaxLength="2" GotFocus="Txt_GotFocus" TextChanged="Integer_TextChanged" PreviewKeyDown="Integer_PreviewKeyDown" Margin="0,0,10,10" />
         <TextBox x:Name="TxtDistance" Grid.Column="3" Grid.Row="2" Width="400" MaxLength="30" GotFocus="Txt_GotFocus" TextChanged="Decimal_TextChanged" PreviewKeyDown="Decimal_PreviewKeyDown" ToolTip="You can either input the current odometer reading or the distance since the last fuel-up." ToolTipService.ShowDuration="5000" Margin="0,0,0,10" />
